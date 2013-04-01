@@ -16,13 +16,17 @@ SOURCES += main.cpp\
         widget.cpp \
     node.cpp \
     edge.cpp \
-    graph.cpp
+    graph.cpp \
+    kmean.cpp
 
 HEADERS  += widget.h \
     node.h \
     edge.h \
-    graph.h
+    graph.h \
+    kmean.h
 
 FORMS    += widget.ui
 
 INCLUDEPATH += D:\eigen
+
+INCLUDEPATH += D:\boost_1_53_0

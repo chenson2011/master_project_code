@@ -41,7 +41,7 @@
 #include "widget.h"
 #include "edge.h"
 #include "node.h"
-
+#include "graph.h"
 #include <Eigen/Dense>
 #include <vector>
 #include <math.h>
@@ -84,15 +84,24 @@ GraphWidget::GraphWidget(QWidget *parent)
 
     int size = a.rows();
     vector<Node*> v;
-
+    Graph uG(a);
+    int groupNum = 3;
+    int* index = uG.spectral(groupNum);
     for( int i = 0; i < size; i++ )
     {
         v.push_back( new Node(this));
     }
 
-    for( int i = 0; i < size; i++ )
+    for(int gn = 0; gn<groupNum; gn++)
     {
-        scene->addItem(v[i]);
+        for( int i = 0; i < size; i++ )
+        {
+            if(index[i] == gn)
+            {
+                v[i]->setBrushColor(QColor::fromRgb(gn*100, 0, 0, 255));
+                scene->addItem(v[i]);
+            }
+        }
     }
 
     for(int i=0; i<size; i++)
@@ -103,7 +112,6 @@ GraphWidget::GraphWidget(QWidget *parent)
                 scene->addItem(new Edge(v[i], v[j]));
         }
     }
-
 
     for( int i = 0; i < size; i++ )
     {

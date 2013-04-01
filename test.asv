@@ -15,15 +15,15 @@ G3 = [0,1,0,0,0,1,1,0,0,1,0,0;
       0,0,0,0,0,0,0,0,1,0,1,0;
       ];
 
-  load('1138_bus');
-  matrix = Problem.A;
-  G3 = matrix(1:100,1:100);
-  G3 = logical(G3)-eye(size(G3,1));
+%   load('1138_bus');
+%   matrix = Problem.A;
+%   G3 = matrix(1:100,1:100);
+%   G3 = logical(G3)-eye(size(G3,1));
   g = graph;
   set_matrix(g,G3);
   distxy(g);
   xy = getxy(g);
-  e = 7;
+  e = 2;
   r = 2;
   
   result = mcl(G3,e,r);

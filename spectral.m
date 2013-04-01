@@ -7,7 +7,7 @@ distxy(g);
 xy = getxy(g);
 Lap = diag(deg(g)) - adj;
 [V,D] = eig(Lap);   
-vec = V(:,1:k);
+vec = V(:,1:k)
 index = kmeans(vec,k);
 
 for i = 1:k

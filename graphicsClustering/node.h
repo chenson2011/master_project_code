@@ -53,9 +53,10 @@ QT_END_NAMESPACE
 //! [0]
 class Node : public QGraphicsItem
 {
+
+
 public:
     Node(GraphWidget *graphWidget);
-
     void addEdge(Edge *edge);
     QList<Edge *> edges() const;
 
@@ -68,17 +69,19 @@ public:
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void setBrushColor(QColor color);
 
 protected:
-    QVariant itemChange(GraphicsItemChange change, const QVariant &value);
-
+    QVariant itemChange(GraphicsItemChange change, const QVariant &value); 
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-    
+
 private:
     QList<Edge *> edgeList;
     QPointF newPos;
     GraphWidget *graph;
+    QColor color;
+
 };
 //! [0]
 

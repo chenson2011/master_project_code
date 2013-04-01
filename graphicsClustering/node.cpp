@@ -55,10 +55,16 @@ Node::Node(GraphWidget *graphWidget)
     setFlag(ItemSendsGeometryChanges);
     setCacheMode(DeviceCoordinateCache);
     setZValue(-1);
+
 }
 //! [0]
 
 //! [1]
+void Node::setBrushColor(QColor col)
+{
+    color = col;
+}
+
 void Node::addEdge(Edge *edge)
 {
     edgeList << edge;
@@ -158,7 +164,7 @@ QPainterPath Node::shape() const
 //! [10]
 void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
 {
-    painter->setPen(Qt::NoPen);
+   /* painter->setPen(Qt::NoPen);
     painter->setBrush(Qt::darkGray);
     painter->drawEllipse(-7, -7, 20, 20);
 
@@ -173,9 +179,14 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
         gradient.setColorAt(1, Qt::darkYellow);
     }
     painter->setBrush(gradient);
+    */
 
+    QBrush brush(color);
+
+    painter->setBrush(brush);
     painter->setPen(QPen(Qt::black, 0));
     painter->drawEllipse(-10, -10, 20, 20);
+
 }
 //! [10]
 

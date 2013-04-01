@@ -1,6 +1,6 @@
 % test
 clear all
-% 
+
 G3 = [0,1,0,0,0,1,1,0,0,1,0,0;
       1,0,1,0,1,0,0,0,0,0,0,0;
       0,1,0,1,1,0,0,0,0,0,0,0;
@@ -17,6 +17,7 @@ G3 = [0,1,0,0,0,1,1,0,0,1,0,0;
 
 %   load('1138_bus');
 %   matrix = Problem.A;
+%   G3 = matrix;
 %   G3 = matrix(1:100,1:100);
 %   G3 = logical(G3)-eye(size(G3,1));
   g = graph;
@@ -26,7 +27,7 @@ G3 = [0,1,0,0,0,1,1,0,0,1,0,0;
   e = 2;
   r = 2;
   
-  result = mcl(G3,e,r)
+  result = mcl(G3,e,r);
   adj = classify(result);
   
   [m,n] = size(adj);
