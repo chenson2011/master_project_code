@@ -57,7 +57,7 @@ GraphWidget::GraphWidget(QWidget *parent)
 {
     QGraphicsScene *scene = new QGraphicsScene(this);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-    scene->setSceneRect(-200, -200, 400, 400);
+    scene->setSceneRect(-400, -400, 400, 400);
     setScene(scene);
     setCacheMode(CacheBackground);
     setViewportUpdateMode(BoundingRectViewportUpdate);
@@ -68,6 +68,7 @@ GraphWidget::GraphWidget(QWidget *parent)
     setWindowTitle(tr("Elastic Nodes"));
 
     MatrixXd a(12,12);
+    MatrixXd b(240,240);
     a <<
          0,1,0,0,0,1,1,0,0,1,0,0,
         1,0,1,0,1,0,0,0,0,0,0,0,
@@ -81,15 +82,29 @@ GraphWidget::GraphWidget(QWidget *parent)
         1,0,0,0,0,1,1,0,0,0,0,0,
         0,0,0,1,0,0,0,1,1,0,0,1,
         0,0,0,0,0,0,0,0,1,0,1,0;
-
+  /*  int size = b.rows();
+    for(int i=0; i<size;i++)
+        for(int j=0; j<size; j++)
+    {
+            b(i,j) = a(i-(i/12)*12,j-(j/12)*12);
+    }
+    */
     int size = a.rows();
     vector<Node*> v;
     Graph uG(a);
+  //  Graph uG(a);
     int groupNum = 3;
     int* index = uG.spectral(groupNum);
+
+
     for( int i = 0; i < size; i++ )
     {
         v.push_back( new Node(this));
+    }
+
+    for( int i = 0; i < size; i++ )
+    {
+        scene->addItem(v[i]);
     }
 
     for(int gn = 0; gn<groupNum; gn++)
@@ -103,6 +118,7 @@ GraphWidget::GraphWidget(QWidget *parent)
             }
         }
     }
+
 
     for(int i=0; i<size; i++)
     {

@@ -25,6 +25,7 @@ class Graph
 {
 public:
     Graph(MatrixXd mat);
+   // Graph(string filenName);
     MatrixXd mcl(int e,int r);
     int* spectral(int k);
     MatrixXd getAdj();
