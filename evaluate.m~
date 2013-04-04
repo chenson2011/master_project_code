@@ -1,0 +1,26 @@
+% Evaluate 
+
+for i = 1:10
+    
+nameA = strcat('network',int2str(i),'.dat');
+nameB = strcat('community',int2str(i),'.dat');
+A = load(nameA);
+B = load(nameB);
+
+result = [];
+
+[m,n] = size(A);
+
+matrix = zeros(1000,1000);
+
+for num = 1:m  
+    
+    matrix(A(num,1),A(num,2)) = A(num,3);
+    
+end
+
+index = spectral(matrix,41);
+
+result = [result,nmi(index',B(:,2)')];
+
+end
